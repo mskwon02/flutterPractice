@@ -60,22 +60,11 @@ class _MainPageState extends State<MainPage> {
               child: Icon(Icons.person))
         ],
       ),
-      body: Row(
-        children: [
-          SideBar(),
-          Expanded(
-            child: Container(
-              color: Colors.grey[200],
-              child: Column(
-                children: [],
-              ),
-            ),
-          )
-        ],
-      ),
+      body: SideBar()
     );
   }
 }
+
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
 
@@ -87,33 +76,92 @@ class _SideBarState extends State<SideBar> {
   int selectedMenuIdx=0;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 250,
-      padding: EdgeInsets.all(10),
-      child: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return Container(
-              margin: EdgeInsets.all(10),
-              child: ListTile(
-                  tileColor: Colors.white,
-                  onTap: () {
-                    setState(() {
-                      selectedMenuIdx = index;
-                    });
-                  },
-                  leading: Icon(Icons.timer),
-                  title: Text("Dashboard"),
-                  selected: selectedMenuIdx == index,
-                  selectedTileColor: Colors.blue,
-                  //선택됐을 때 타일 색깔
-                  selectedColor: Colors.white,
-                  //선택됐을때 내용 색깔
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  )),
-            );
-          }),
+    return Row(
+      children: [
+        Container(
+          width: 250,
+          padding: EdgeInsets.all(10),
+          child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.all(10),
+                  child: ListTile(
+                      tileColor: Colors.white,
+                      onTap: () {
+                        setState(() {
+                          selectedMenuIdx = index;
+                        });
+                      },
+                      leading: Icon(Icons.timer),
+                      title: Text("Dashboard"),
+                      selected: selectedMenuIdx == index,
+                      selectedTileColor: Colors.blue,
+                      //선택됐을 때 타일 색깔
+                      selectedColor: Colors.white,
+                      //선택됐을때 내용 색깔
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                );
+              }),
+        ),
+        Expanded(
+          child: Container(
+            padding: EdgeInsets.all(10),
+            color: Colors.grey[200],
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CardSmall(),
+                    CardSmall(),
+                    CardSmall(),
+                    CardSmall()
+                  ],
+                ),
+                CardLarge(),
+                CardLarge()
+              ],
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class CardSmall extends StatelessWidget {
+  const CardSmall({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Card(
+        margin: EdgeInsets.all(10),
+        child: Container(
+          height: 150,
+        ),
+        color: Colors.white,
+      ),
+    );
+  }
+}
+
+class CardLarge extends StatelessWidget {
+  const CardLarge({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Card(
+        margin: EdgeInsets.all(10),
+        child: Container(
+          height: 200,
+        ),
+        color: Colors.white,
+      ),
     );
   }
 }
