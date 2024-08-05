@@ -30,8 +30,10 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
-          toolbarHeight: 60,//앱바 세로 크기
-          leadingWidth: 250,//리딩영역 가로
+          toolbarHeight: 60,
+          //앱바 세로 크기
+          leadingWidth: 250,
+          //리딩영역 가로
           leading: Container(
             margin: EdgeInsets.all(10),
             child: Lottie.asset('lottie/logo.json'),
@@ -60,8 +62,7 @@ class _MainPageState extends State<MainPage> {
                 child: Icon(Icons.person))
           ],
         ),
-        body: SideBar()
-    );
+        body: SideBar());
   }
 }
 
@@ -73,7 +74,8 @@ class SideBar extends StatefulWidget {
 }
 
 class _SideBarState extends State<SideBar> {
-  int selectedMenuIdx=0;
+  int selectedMenuIdx = 0;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -107,29 +109,87 @@ class _SideBarState extends State<SideBar> {
               }),
         ),
         Expanded(
-          child: Container(
-            padding: EdgeInsets.all(10),
-            color: Colors.grey[200],
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Expanded(child: CardSmall()),
-                      Expanded(child: CardSmall()),
-                      Expanded(child: CardSmall()),
-                      Expanded(child: CardSmall())
-                    ],
-                  ),
-                  CardLarge(),
-                  CardLarge()
-                ],
-              ),
-            ),
-          ),
-        )
+            child: IndexedStack(index: selectedMenuIdx, children: [
+          SwitchedHomePage(),
+          SwitchedSettingPage(),
+          SwitchedProductPage()
+        ]))
       ],
+    );
+  }
+}
+
+class SwitchedHomePage extends StatelessWidget {
+  const SwitchedHomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      color: Colors.grey[200],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Expanded(child: CardSmall()),
+                Expanded(child: CardSmall()),
+                Expanded(child: CardSmall()),
+                Expanded(child: CardSmall())
+              ],
+            ),
+            CardLarge(),
+            CardLarge()
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SwitchedSettingPage extends StatelessWidget {
+  const SwitchedSettingPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      color: Colors.grey[200],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [CardLarge(), CardLarge(), CardLarge()],
+        ),
+      ),
+    );
+  }
+}
+
+class SwitchedProductPage extends StatelessWidget {
+  const SwitchedProductPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      color: Colors.grey[200],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            CardLarge(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Expanded(child: CardSmall()),
+                Expanded(child: CardSmall()),
+                Expanded(child: CardSmall()),
+                Expanded(child: CardSmall())
+              ],
+            ),
+            CardLarge()
+          ],
+        ),
+      ),
     );
   }
 }
