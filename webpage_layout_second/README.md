@@ -1,6 +1,10 @@
 # webpage_layout_second
 
-A new Flutter project.
+완성한 웹페이지 UI 미리보기
+
+![스크린샷 2024-08-05 191653](https://github.com/user-attachments/assets/a42d9382-2c56-423c-85a3-b5af4589bc24)
+
+![스크린샷 2024-08-05 191701](https://github.com/user-attachments/assets/af8f7a3d-e7fe-455e-bbdf-1972c09a212c)
 
 ## Getting Started
 
